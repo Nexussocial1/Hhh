@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Nexus Social</title>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='src/css/style.css'>
+</head>
+<body>
+<header>
+<h2>Nexus Social</h2>
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('profile')">Profile</button>
+<button onclick="showPage('groups')">Groups</button>
+<button onclick="logout()">Logout</button>
+</nav>
+</header>
+<section id='authBox'>
+<input id='email' placeholder='Email'>
+<input id='password' type='password' placeholder='Password'>
+<button onclick='login()'>Login</button>
+<button onclick='signup()'>Signup</button>
+</section>
+<section id='home' class='page'>
+<textarea id='postText' placeholder="What's happening?"></textarea>
+<button onclick='addPost()'>Post</button>
+<div id='feed'></div>
+</section>
+<section id='profile' class='page'>Profile Page</section>
+<section id='groups' class='page'>Groups Page</section>
+<script>
+function showPage(p){
+ document.querySelectorAll('.page').forEach(e=>e.style.display='none');
+ document.getElementById(p).style.display='block';
+}
+</script>
+<script type='module' src='src/js/app.js'></script>
+</body>
+</html>
