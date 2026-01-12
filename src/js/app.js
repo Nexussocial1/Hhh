@@ -1,1 +1,13 @@
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyD8pCEwiDHWvb4vju9vtsXvxFvB29SM6VM",authDomain:"nexus-social-dce76.firebaseapp.com",projectId:"nexus-social-dce76",storageBucket:"nexus-social-dce76.appspot.com",messagingSenderId:"172694934932",appId:"1:172694934932:web:62bb46749dd0c062bfab81"};
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+window.login=()=>signInWithEmailAndPassword(auth,email.value,password.value);
+window.signup=()=>createUserWithEmailAndPassword(auth,email.value,password.value);
+window.logout=()=>signOut(auth);
+window.addPost=async()=>{if(!postText.value)return;await addDoc(collection(db,"posts"),{text:postText.value,user:auth.currentUser.email,time:serverTimestamp()});postText.value="";};
+onSnapshot(query(collection(db,"posts"),orderBy("time","desc")),snap=>{feed.innerHTML="";snap.forEach(d=>{const p=d.data();feed.innerHTML+=`<div><b>${p.user}</b><br>${p.text}</div>`;});});
+onAuthStateChanged(auth,u=>{authBox.style.display=u?"none":"block";if(u)showPage("home");});
