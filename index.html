@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Nexus Social</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Glass Social</title><link rel="stylesheet" href="style.css"></head>
 <body>
-<h2>Nexus Social</h2>
-<input id="postInput" placeholder="What's happening?"/>
-<button id="postBtn">Post</button>
-<button id="logoutBtn">Logout</button>
+<header class="glass"><b>Nexus Social</b><div>
+<button class="nav-btn">Home</button><button class="nav-btn">Profile</button>
+<button class="nav-btn">Groups</button><button class="nav-btn">Logout</button>
+</div></header>
+<div class="glass post-box">
+<textarea id="postText" placeholder="What's happening?"></textarea>
+<button class="post-btn" id="postBtn">Post</button></div>
 <div id="feed"></div>
-<script type="module" src="/src/main.js"></script>
-</body>
-</html>
+<script src="main.js"></script></body></html>
