@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Nexus Social</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8" />
+<title>Nexus Social</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style.css">
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
-      from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp }
-      from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyD8pCEwiDHWvb4vju9vtsXvxFvB29SM6VM",
-      authDomain: "nexus-social-dce76.firebaseapp.com",
-      projectId: "nexus-social-dce76",
-      storageBucket: "nexus-social-dce76.appspot.com",
-      messagingSenderId: "172694934932",
-      appId: "1:172694934932:web:62bb46749dd0c062bfab81"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyD8pCEwiDHWvb4vju9vtsXvxFvB29SM6VM",
+    authDomain: "nexus-social-dce76.firebaseapp.com",
+    projectId: "nexus-social-dce76",
+    storageBucket: "nexus-social-dce76.appspot.com",
+    messagingSenderId: "172694934932",
+    appId: "1:172694934932:web:62bb46749dd0c062bfab81"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const provider = new GoogleAuthProvider();
-
-    window.firebaseApp = { auth, db, provider, signInWithPopup, signOut, onAuthStateChanged,
-      collection, addDoc, query, orderBy, onSnapshot, serverTimestamp };
-  </script>
+  window.app = initializeApp(firebaseConfig);
+  window.auth = getAuth(app);
+  window.db = getFirestore(app);
+  window.provider = new GoogleAuthProvider();
+  window.onAuthStateChanged = onAuthStateChanged;
+  window.signInWithPopup = signInWithPopup;
+  window.signOut = signOut;
+</script>
 </head>
 
 <body>
-  <h2>Nexus Social</h2>
-  <button id="loginBtn">Login</button>
-  <button id="logoutBtn">Logout</button>
+<div class="app">
+  <header class="glass">
+    <h1>Nexus Social</h1>
+    <div id="userArea"></div>
+  </header>
 
-  <br><br>
-  <textarea id="postText" placeholder="Write something..."></textarea>
-  <button id="postBtn">Post</button>
+  <nav class="glass nav">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('profile')">Profile</button>
+    <button onclick="showPage('groups')">Groups</button>
+  </nav>
 
-  <div id="posts"></div>
+  <main>
+    <section id="home" class="glass page">Home feed coming soon…</section>
+    <section id="profile" class="glass page hidden">Your profile page</section>
+    <section id="groups" class="glass page hidden">Groups list here</section>
+  </main>
+</div>
 
-  <script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
